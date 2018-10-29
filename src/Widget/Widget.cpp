@@ -8,8 +8,9 @@
 #include "Widget.h"
 
 #include <cstdint>
-#include <iostream>
 #include <iterator>
+
+#include "Dimention.h"
 
 namespace ta {
 
@@ -22,14 +23,14 @@ Widget::Widget(Widget* parent) {
 		m_window = parent->window();
 	}
 
-	m_dimension.x = 0;
-	m_dimension.y = 0;
+	m_dimention.width = 0;
+	m_dimention.height = 0;
 
 	m_position = sf::Vector2f(0, 0);
 }
 
 Widget::Widget(Dimention<int> dim, Widget* parent) :
-		m_dimension(dim) {
+		m_dimention(dim) {
 	if (parent != 0) {
 		parent->addChild(this);
 
@@ -52,8 +53,8 @@ Widget::Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget *parent) :
 Widget::Widget(sf::RenderWindow *window) :
 		m_window(window), m_parent(0) {
 
-	m_dimension.x = INT16_MAX;
-	m_dimension.y = INT16_MAX;
+	m_dimention.width = INT16_MAX;
+	m_dimention.height = INT16_MAX;
 
 	m_position = sf::Vector2f(0, 0);
 }
@@ -98,9 +99,9 @@ void Widget::update() {
 }
 
 void Widget::onClick(const sf::Event::MouseButtonEvent &event) {
-	if (event.x >= m_position.x && event.x <= m_position.x + m_dimension.x
+	if (event.x >= m_position.x && event.x <= m_position.x + m_dimention.width
 			&& event.y >= m_position.y
-			&& event.y <= m_position.y + m_dimension.y)
+			&& event.y <= m_position.y + m_dimention.height)
 	{
 		
 		for (Widget* currentWidget : m_listChild) {
@@ -140,10 +141,10 @@ bool Widget::setPosition(sf::Vector2<float> pos) {
 		if (pos.x < m_parent->position().x) {
 			returnBool = false;
 			m_position.x = m_parent->position().x;
-		} else if (pos.x + m_dimension.x
-				> m_parent->position().x + m_parent->dimention().x) {
+		} else if (pos.x + m_dimention.width
+				> m_parent->position().x + m_parent->dimention().width) {
 			returnBool = false;
-			m_position.x = m_parent->m_dimension.x - m_dimension.x
+			m_position.x = m_parent->m_dimention.width - m_dimention.width
 					+ m_parent->position().x;
 		}
 
@@ -151,10 +152,10 @@ bool Widget::setPosition(sf::Vector2<float> pos) {
 		if (pos.y < m_parent->position().y) {
 			returnBool = false;
 			m_position.y = m_parent->position().y;
-		} else if (pos.y + m_dimension.y
-				> m_parent->position().y + m_parent->dimention().y) {
+		} else if (pos.y + m_dimention.height
+				> m_parent->position().y + m_parent->dimention().height) {
 			returnBool = false;
-			m_position.y = m_parent->m_dimension.y - m_dimension.y
+			m_position.y = m_parent->m_dimention.height - m_dimention.height
 					+ m_parent->position().y;
 		}
 	}
@@ -166,17 +167,17 @@ bool Widget::move(int x, int y) {
 	return setPosition(x + m_position.x, y + m_position.y);
 }
 
-void Widget::setDimention(int x, int y) {
+void Widget::setDimention(int width, int height) {
 	Dimention<int> dim;
 	
-	dim.x = x;
-	dim.y = y;
+	dim.width = width;
+	dim.height = height;
 	
 	setDimention(dim);
 }
 
 void Widget::setDimention(Dimention<int> dim) {
-	m_dimension = dim;
+	m_dimention = dim;
 }
 
 sf::Vector2<float> Widget::position() const {
@@ -184,7 +185,7 @@ sf::Vector2<float> Widget::position() const {
 }
 
 Dimention<int> Widget::dimention() const {
-	return m_dimension;
+	return m_dimention;
 }
 
 sf::RenderWindow* Widget::window() const {

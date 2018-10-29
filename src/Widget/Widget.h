@@ -11,7 +11,8 @@
 #include <SFML/Window/Event.hpp>
 #include <vector>
 
-#include "Dimension.h"
+#include "Dimention.h"
+
 
 namespace sf {
 class RenderWindow;
@@ -61,7 +62,7 @@ protected:
 	std::vector<Widget*> m_listChild;
 	
 	sf::Vector2<float> m_position;	
-	Dimention<int> m_dimension;
+	Dimention<int> m_dimention;
 };
 
 } /* namespace Thanto */
