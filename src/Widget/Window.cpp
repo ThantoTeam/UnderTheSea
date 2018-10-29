@@ -7,19 +7,20 @@
 
 #include "Window.h"
 
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/VideoMode.hpp>
+
+#include "Widget.h"
 
 namespace ta {
 
 Window::Window(Widget *panel) :
-		RenderWindow(sf::VideoMode(250, 250), "An application"),
-		m_currentPanel(
-				panel) {
+		RenderWindow(sf::VideoMode(250, 250), "An application"), m_currentPanel(
+				panel), m_stopRun(false) {
 }
 
 Window::Window(sf::VideoMode mode, sf::String title, Widget *panel) :
-		RenderWindow(mode, title), m_currentPanel(panel) {
-	
+		RenderWindow(mode, title), m_currentPanel(panel), m_stopRun(false) {
 }
 
 Window::~Window() {
@@ -52,8 +53,33 @@ void Window::update() {
 	if (m_currentPanel == 0)
 		return;
 	
-	this->clear();
+	clear();
+	m_currentPanel->drawAllChild();
+	display();
 	
+}
+
+void Window::run() {
+	m_stopRun = false;
+
+	while (isOpen()) {
+
+		if (m_stopRun) {
+			break;
+		}
+		
+		sf::Event event;
+		while (pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				close();
+			}
+	}
+	update();
+	}
+}
+
+void Window::stopRun() {
+	m_stopRun = true;
 }
 
 } /* namespace ta */

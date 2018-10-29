@@ -33,7 +33,7 @@ public:
 	virtual void onClick(const sf::Event::MouseButtonEvent& event);
 
 	void drawAllChild();
-
+	
 	
 	virtual bool setPosition(float x, float y);
 	virtual bool setPosition(sf::Vector2<float>);

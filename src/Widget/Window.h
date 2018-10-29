@@ -31,7 +31,12 @@ public:
 	
 	void update();
 	
+	void run();
+	void stopRun();
+	
 private:
+	
+	bool m_stopRun;
 	
 	Widget *m_currentPanel;
 };
