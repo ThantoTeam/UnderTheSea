@@ -23,17 +23,15 @@ namespace ta {
 class Widget {
 public:
 	Widget(Widget *parent = 0);
-	Widget(sf::RenderWindow*);
 	Widget(Dimention<int> dim, Widget *parent = 0);
 	Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget* parent = 0);
 	virtual ~Widget();
 	
-	virtual void draw();
+	virtual void draw(const sf::RenderWindow &win);
 
 	virtual void onClick(const sf::Event::MouseButtonEvent& event);
 
-	void drawAllChild();
-	
+	void drawAllChild(const sf::RenderWindow &win);
 	
 	virtual bool setPosition(float x, float y);
 	virtual bool setPosition(sf::Vector2<float>);
@@ -42,7 +40,6 @@ public:
 	virtual void setDimention(int x, int y);
 	virtual void setDimention(Dimention<int> dim);
 
-	sf::RenderWindow* window() const;
 	sf::Vector2<float> position() const;
 	Dimention<int> dimention() const;
 
@@ -53,9 +50,7 @@ protected:
 	void addChild(Widget*child);
 	void removeChild(Widget *child);
 	void deleteAllChilds();
-	
-	sf::RenderWindow *m_window;
-	
+		
 	Widget * m_parent;
 	std::vector<Widget*> m_listChild;
 	

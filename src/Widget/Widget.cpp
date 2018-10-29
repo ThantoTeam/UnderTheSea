@@ -19,8 +19,6 @@ Widget::Widget(Widget* parent) {
 		parent->addChild(this);
 
 		m_parent = parent;
-
-		m_window = parent->window();
 	}
 
 	m_dimention.width = 0;
@@ -35,7 +33,6 @@ Widget::Widget(Dimention<int> dim, Widget* parent) :
 		parent->addChild(this);
 
 		m_parent = parent;
-		m_window = parent->window();
 	}
 
 	m_position = sf::Vector2f(0, 0);
@@ -48,15 +45,6 @@ Widget::Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget *parent) :
 		parent->addChild(this);
 	}
 	setPosition(pos);
-}
-
-Widget::Widget(sf::RenderWindow *window) :
-		m_window(window), m_parent(0) {
-
-	m_dimention.width = INT16_MAX;
-	m_dimention.height = INT16_MAX;
-
-	m_position = sf::Vector2f(0, 0);
 }
 
 Widget::~Widget() {
@@ -90,8 +78,7 @@ void Widget::deleteAllChilds() {
 	}
 }
 
-void Widget::draw() {
-
+void Widget::draw(const sf::RenderWindow &win) {
 }
 
 void Widget::onClick(const sf::Event::MouseButtonEvent &event) {
@@ -107,11 +94,11 @@ void Widget::onClick(const sf::Event::MouseButtonEvent &event) {
 	}
 }
 
-void Widget::drawAllChild() {
-	draw();
+void Widget::drawAllChild(const sf::RenderWindow &win) {
+	draw(win);
 
 	for (Widget* currentWidget : m_listChild) {
-		currentWidget->drawAllChild();
+		currentWidget->drawAllChild(win);
 	}
 }
 
@@ -135,7 +122,6 @@ bool Widget::setPosition(sf::Vector2<float> pos) {
 			m_position.x = m_parent->m_dimention.width - m_dimention.width
 					+ m_parent->position().x;
 		}
-
 		// idem but for y
 		if (pos.y < m_parent->position().y) {
 			returnBool = false;
@@ -176,7 +162,4 @@ Dimention<int> Widget::dimention() const {
 	return m_dimention;
 }
 
-sf::RenderWindow* Widget::window() const {
-	return m_window;
-}
 } /* namespace Thanto */
