@@ -29,12 +29,10 @@ public:
 	virtual ~Widget();
 	
 	virtual void draw();
-	virtual void update();
 
 	virtual void onClick(const sf::Event::MouseButtonEvent& event);
 
 	void drawAllChild();
-	void updateAllChild();
 
 	
 	virtual bool setPosition(float x, float y);

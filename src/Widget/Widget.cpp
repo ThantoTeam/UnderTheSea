@@ -94,10 +94,6 @@ void Widget::draw() {
 
 }
 
-void Widget::update() {
-
-}
-
 void Widget::onClick(const sf::Event::MouseButtonEvent &event) {
 	if (event.x >= m_position.x && event.x <= m_position.x + m_dimention.width
 			&& event.y >= m_position.y
@@ -116,14 +112,6 @@ void Widget::drawAllChild() {
 
 	for (Widget* currentWidget : m_listChild) {
 		currentWidget->drawAllChild();
-	}
-}
-
-void Widget::updateAllChild() {
-	update();
-
-	for (Widget* currentWidget : m_listChild) {
-		currentWidget->updateAllChild();
 	}
 }
 
