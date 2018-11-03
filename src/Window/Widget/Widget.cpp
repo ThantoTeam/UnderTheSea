@@ -7,10 +7,8 @@
 
 #include "Widget.h"
 
-#include <cstdint>
 #include <iterator>
 
-#include "Dimention.h"
 
 namespace ta {
 

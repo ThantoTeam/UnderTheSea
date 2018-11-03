@@ -10,17 +10,18 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/VideoMode.hpp>
 
-#include "Widget.h"
+#include "Widget/Widget.h"
 
 namespace ta {
 
 Window::Window(Widget *panel) :
-		RenderWindow(sf::VideoMode(250, 250), "An application"), m_currentPanel(
-				panel), m_stopRun(false) {
+		RenderWindow(sf::VideoMode(250, 250), "An application") {
+			changePanel(panel);
 }
 
 Window::Window(sf::VideoMode mode, sf::String title, Widget *panel) :
-		RenderWindow(mode, title), m_currentPanel(panel), m_stopRun(false) {
+		RenderWindow(mode, title) {
+	changePanel(panel);
 }
 
 Window::~Window() {
@@ -54,7 +55,7 @@ void Window::update() {
 		return;
 	
 	clear();
-	m_currentPanel->drawAllChild();
+	m_currentPanel->drawAllChild(*this);
 	display();
 	
 }
