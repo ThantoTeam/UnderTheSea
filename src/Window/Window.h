@@ -9,7 +9,12 @@
 #define SRC_WIDGET_WINDOW_H_
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/View.hpp>
 #include <SFML/System/String.hpp>
+
+namespace ta {
+class Panel;
+} /* namespace ta */
 
 namespace ta {
 class Widget;
@@ -19,14 +24,14 @@ namespace ta {
 
 class Window: public sf::RenderWindow {
 public:
-	Window(Widget *panel = 0);
-	Window(sf::VideoMode mode, sf::String title, Widget *panel = 0);
+	Window(Panel *panel = 0);
+	Window(sf::VideoMode mode, sf::String title, Panel *panel = 0);
 	
 	virtual ~Window();	
 	
-	Widget *currentPanel();
+	Panel *currentPanel();
 	
-	void changePanel(Widget * panel);
+	void changePanel(Panel * panel);
 	bool deleteCurrentPanel();
 	
 	void update();
@@ -38,7 +43,9 @@ private:
 	
 	bool m_stopRun;
 	
-	Widget *m_currentPanel;
+	sf::View m_view;
+	
+	Panel *m_currentPanel;
 };
 
 } /* namespace ta */

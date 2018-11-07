@@ -9,33 +9,42 @@
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/VideoMode.hpp>
+#include <iostream>
 
-#include "Widget/Widget.h"
+#include "Panel.h"
 
 namespace ta {
 
-Window::Window(Widget *panel) :
+Window::Window(Panel *panel) :
 		RenderWindow(sf::VideoMode(250, 250), "An application") {
-			changePanel(panel);
+	changePanel(panel);
+
+	m_view = getDefaultView();
 }
 
-Window::Window(sf::VideoMode mode, sf::String title, Widget *panel) :
+Window::Window(sf::VideoMode mode, sf::String title, Panel *panel) :
 		RenderWindow(mode, title) {
 	changePanel(panel);
+
+	m_view = getDefaultView(); // to correct resize
 }
 
 Window::~Window() {
 	deleteCurrentPanel();
 }
 
-Widget * Window::currentPanel() {
+Panel * Window::currentPanel() {
 	return m_currentPanel;
 }
 
-void Window::changePanel(Widget* panel) {
+void Window::changePanel(Panel* panel) {
 	deleteCurrentPanel();
 
-	m_currentPanel = panel;
+	if (panel != 0) {
+		m_currentPanel = panel;
+
+		m_currentPanel->setup();
+	}
 }
 
 bool Window::deleteCurrentPanel() {
@@ -73,6 +82,11 @@ void Window::run() {
 		while (pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				close();
+			}
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+				std::cout << event.mouseButton.x << "x " << event.mouseButton.y
+						<< "y" << std::endl;
 			}
 	}
 	update();
