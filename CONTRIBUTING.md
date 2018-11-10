@@ -2,7 +2,7 @@
 
 ### Program:
 
- - AntoninLoubiere (@AntoninLoubiere)
+ - Antonin Loubiere (@AntoninLoubiere)
 
 ### Pictures
 
