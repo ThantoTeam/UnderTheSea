@@ -8,10 +8,12 @@
 #ifndef SRC_WIDGET_DIMENTION_H_
 #define SRC_WIDGET_DIMENTION_H_
 
-namespace ta {
+namespace ta
+{
 
 template<typename T>
-struct Dimention {
+struct Dimention
+{
 	int width;
 	int height;
 };

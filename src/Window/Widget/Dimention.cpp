@@ -7,9 +7,11 @@
 
 #include "Dimention.h"
 
-namespace ta {
+namespace ta
+{
 
-Dimention<int> dimention(int width, int height) {
+Dimention<int> dimention(int width, int height)
+{
 	Dimention<int> dim;
 
 	dim.width = width;
@@ -18,7 +20,8 @@ Dimention<int> dimention(int width, int height) {
 	return dim;
 }
 
-Dimention<float> dimention(float width, float height) {
+Dimention<float> dimention(float width, float height)
+{
 	Dimention<float> dim;
 
 	dim.width = width;

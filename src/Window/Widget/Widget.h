@@ -14,24 +14,27 @@
 #include "Dimention.h"
 
 
-namespace sf {
+namespace sf
+{
 class RenderWindow;
 } /* namespace sf */
 
-namespace ta {
+namespace ta
+{
 
-class Widget {
+class Widget
+{
 public:
 	Widget(Widget *parent = 0);
 	Widget(Dimention<int> dim, Widget *parent = 0);
 	Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget* parent = 0);
 	virtual ~Widget();
 	
-	virtual void draw(const sf::RenderWindow &win);
+	virtual void draw(sf::RenderWindow *win);
 
 	virtual void onClick(const sf::Event::MouseButtonEvent& event);
 
-	void drawAllChild(const sf::RenderWindow &win);
+	void drawAllChild(sf::RenderWindow *win);
 	
 	virtual bool setPosition(float x, float y);
 	virtual bool setPosition(sf::Vector2<float>);

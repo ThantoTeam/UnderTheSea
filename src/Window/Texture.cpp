@@ -7,7 +7,9 @@
 
 #include "Texture.h"
 
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <iostream>
 #include <string>
 
 namespace ta
@@ -19,7 +21,12 @@ sf::Texture loadTextureFromFile(std::string fileName, bool smooth)
 {
 	sf::Texture tex;
 
-	tex.loadFromFile(fileName);
+	if (!tex.loadFromFile(fileName))
+	{
+		std::cerr << "Can't load: " << fileName;
+		tex.loadFromFile(NULL_TEXTURE);
+		return tex;
+	}
 	tex.setSmooth(smooth);
 
 	return tex;
@@ -30,8 +37,13 @@ sf::Texture loadTextureFromFile(std::string fileName, sf::IntRect area,
 {
 	sf::Texture tex;
 
-	tex.loadFromFile(fileName, area);
-	tex.setSmooth(smooth);
+	if (!tex.loadFromFile(fileName, area))
+	{
+		std::cerr << "Can't load: " << fileName;
+		tex.loadFromFile(NULL_TEXTURE);
+		return tex;
+	}
+		tex.setSmooth(smooth);
 
 	return tex;
 }

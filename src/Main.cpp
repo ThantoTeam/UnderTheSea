@@ -4,7 +4,8 @@
 #include "Window/CustomPanel/MainMenu.h"
 #include "Window/Window.h"
 
-int main() {
+int main()
+{
 	ta::Window *win = new ta::Window(sf::VideoMode(200, 200), "Test");
 	ta::MainMenu *panel = new ta::MainMenu();
 	win->changePanel(panel);

@@ -8,14 +8,19 @@
 #include "ImageWidget.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Vertex.hpp>
 #include <iostream>
 
 namespace ta
 {
 
 ImageWidget::ImageWidget(Widget *parent) :
-		Widget(parent), m_texture(0)
+		Widget(parent), m_texture(0), m_autoResize(false)
+{
+	createSprite();
+}
+
+ImageWidget::ImageWidget(sf::Texture *texture, Widget *parent) :
+		Widget(parent), m_texture(texture), m_autoResize(false)
 {
 	createSprite();
 }
@@ -44,6 +49,11 @@ void ImageWidget::setTexture(sf::Texture *texture)
 	m_texture = texture;
 }
 
+void ImageWidget::setAutoResize(const bool &autoResize)
+{
+	m_autoResize = autoResize;
+}
+
 sf::Texture *ImageWidget::texture() const
 {
 	return m_texture;
@@ -52,6 +62,11 @@ sf::Texture *ImageWidget::texture() const
 sf::Sprite *ImageWidget::sprite() const
 {
 	return m_sprite;
+}
+
+bool ImageWidget::autoResize()
+{
+	return m_autoResize;
 }
 
 } /* namespace ta */

@@ -10,11 +10,16 @@
 
 #include "Widget/Widget.h"
 
+namespace ta
+{
+class Window;
+} /* namespace ta */
+
 namespace ta {
 
 class Panel: public Widget {
 public:
-	virtual void setup() = 0; // just add setup methode
+	virtual void setup(Window *win) = 0; // just add setup methode
 };
 
 } /* namespace ta */

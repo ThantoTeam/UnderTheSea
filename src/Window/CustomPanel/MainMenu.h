@@ -10,14 +10,21 @@
 
 #include "../Panel.h"
 
-namespace ta {
+namespace ta
+{
+class Window;
+} /* namespace ta */
 
-class MainMenu: public Panel {
+namespace ta
+{
+
+class MainMenu: public Panel
+{
 public:
 	MainMenu();
 	virtual ~MainMenu();
 
-	virtual void setup();
+	virtual void setup(Window *window) override;
 };
 
 } /* namespace ta */

@@ -9,17 +9,31 @@
 
 #include <iostream>
 
-namespace ta {
+#include "../Texture.h"
+#include "../Widget/ImageWidget.h"
+#include "../Window.h"
 
-MainMenu::MainMenu() {
+
+namespace ta
+{
+
+MainMenu::MainMenu()
+{
 }
 
-MainMenu::~MainMenu() {
+MainMenu::~MainMenu()
+{
 }  
 
-void MainMenu::setup()
+
+
+void MainMenu::setup(Window *window)
 {
-	std::cout << "test";
+	//background
+	sf::Texture texture = Texture::loadTextureFromFile(
+			"assets/image/MainMenu/background.jpg");
+	window->addTexture(&texture);
+	new ImageWidget(&texture, this);
 }
 
 } /* namespace ta */

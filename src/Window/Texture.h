@@ -11,6 +11,8 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <string>
 
+#define NULL_TEXTURE "assets/null.png"
+
 namespace sf
 {
 class Texture;
