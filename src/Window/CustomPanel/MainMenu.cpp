@@ -19,10 +19,12 @@ namespace ta
 
 MainMenu::MainMenu()
 {
+    m_parent = 0;
 }
 
 MainMenu::~MainMenu()
 {
+    this->~Widget();
 }  
 
 

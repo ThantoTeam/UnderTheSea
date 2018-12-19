@@ -14,7 +14,7 @@ namespace ta {
 
 Widget::Widget(Widget* parent)
 {
-    if (parent != 0)
+    if (parent != NULL && parent != 0)
     {
         parent->addChild(this);
 
@@ -30,7 +30,7 @@ Widget::Widget(Widget* parent)
 Widget::Widget(Dimention<int> dim, Widget* parent) :
         m_dimention(dim)
 {
-    if (parent != 0)
+    if (parent != NULL && parent != 0)
     {
         parent->addChild(this);
 

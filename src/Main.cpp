@@ -7,9 +7,9 @@
 int main()
 {
     ta::Window *win = new ta::Window(sf::VideoMode(200, 200), "Test");
-    ta::MainMenu *panel = new ta::MainMenu();
-    win->changePanel(panel);
-
+    
+    ta::MainMenu *mainMenu = new ta::MainMenu();
+    win->changePanel(mainMenu);
     
     win->run();
     

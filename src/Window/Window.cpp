@@ -9,8 +9,8 @@
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/VideoMode.hpp>
-#include <iostream>
 
+#include "../General.h"
 #include "Panel.h"
 
 namespace ta
@@ -66,24 +66,6 @@ bool Window::deleteCurrentPanel()
     return false;
 }
 
-void Window::addTexture(const sf::Texture *texture)
-{
-    listTexture.push_back(*texture);
-}
-
-void Window::removeTexture(sf::Texture *texture)
-{
-//    TODO: remove texture
-//    for (std::vector<sf::Texture>::iterator it = listTexture.begin();
-//            it != listTexture.end(); it++)
-//    {
-//        if (*it == *texture)
-//        {
-//            listTexture.erase(it);
-//        }
-//    }
-}
-
 void Window::update()
 {
     
@@ -93,13 +75,14 @@ void Window::update()
     clear();
     m_currentPanel->drawAllChild(this);
     display();
-    
 }
 
 void Window::run()
 {
     m_stopRun = false;
-
+    
+    ta::log::log("Window start updates");
+    
     while (isOpen())
     {
 
@@ -113,17 +96,15 @@ void Window::run()
         {
             if (event.type == sf::Event::Closed)
             {
+                ta::log::log("Close Window");
                 close();
             }
+        }
 
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
-                std::cout << event.mouseButton.x << "x " << event.mouseButton.y
-                        << "y" << std::endl;
-            }
+        update();
     }
-    update();
-    }
+    
+    ta::log::log("Window stop updates");
 }
 
 void Window::stopRun()

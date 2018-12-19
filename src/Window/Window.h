@@ -42,9 +42,6 @@ public:
     void changePanel(Panel * panel);
     bool deleteCurrentPanel();
     
-    void addTexture(const sf::Texture *texture);
-    void removeTexture(sf::Texture *texture);
-    
     void update();
     
     void run();
@@ -57,8 +54,6 @@ private:
     sf::View m_view;
     
     Panel *m_currentPanel;
-    
-    std::vector<sf::Texture> listTexture;
 };
 
 } /* namespace ta */
