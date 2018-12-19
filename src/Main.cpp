@@ -6,13 +6,13 @@
 
 int main()
 {
-	ta::Window *win = new ta::Window(sf::VideoMode(200, 200), "Test");
-	ta::MainMenu *panel = new ta::MainMenu();
-	win->changePanel(panel);
+    ta::Window *win = new ta::Window(sf::VideoMode(200, 200), "Test");
+    ta::MainMenu *panel = new ta::MainMenu();
+    win->changePanel(panel);
 
-	
-	win->run();
-	
-	delete win;
-	return EXIT_SUCCESS;
+    
+    win->run();
+    
+    delete win;
+    return EXIT_SUCCESS;
 }

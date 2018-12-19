@@ -21,26 +21,26 @@ namespace ta
 class ImageWidget: public Widget
 {
 public:
-	ImageWidget(Widget *parent = 0);
-	ImageWidget(sf::Texture *texture, Widget *parent = 0);
-	virtual ~ImageWidget();
+    ImageWidget(Widget *parent = 0);
+    ImageWidget(sf::Texture *texture, Widget *parent = 0);
+    virtual ~ImageWidget();
 
-	virtual void draw(sf::RenderWindow* win) override;
+    virtual void draw(sf::RenderWindow* win) override;
 
-	void setTexture(sf::Texture *texture);
-	void setAutoResize(const bool &autoResize);
+    void setTexture(sf::Texture *texture);
+    void setAutoResize(const bool &autoResize);
 
-	sf::Texture* texture() const;
-	sf::Sprite* sprite() const;
-	bool autoResize();
+    sf::Texture* texture() const;
+    sf::Sprite* sprite() const;
+    bool autoResize();
 
 private:
-	void createSprite();
+    void createSprite();
 
-	sf::Texture *m_texture;
-	sf::Sprite *m_sprite;
+    sf::Texture *m_texture;
+    sf::Sprite *m_sprite;
 
-	bool m_autoResize;
+    bool m_autoResize;
 };
 
 } /* namespace ta */

@@ -21,10 +21,10 @@ namespace ta
 class MainMenu: public Panel
 {
 public:
-	MainMenu();
-	virtual ~MainMenu();
+    MainMenu();
+    virtual ~MainMenu();
 
-	virtual void setup(Window *window) override;
+    virtual void setup(Window *window) override;
 };
 
 } /* namespace ta */

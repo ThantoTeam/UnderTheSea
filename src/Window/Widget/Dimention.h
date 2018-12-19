@@ -14,8 +14,8 @@ namespace ta
 template<typename T>
 struct Dimention
 {
-	int width;
-	int height;
+    int width;
+    int height;
 };
 
 Dimention<int> dimention(int x, int y);

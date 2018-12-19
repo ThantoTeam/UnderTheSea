@@ -19,7 +19,7 @@ namespace ta {
 
 class Panel: public Widget {
 public:
-	virtual void setup(Window *win) = 0; // just add setup methode
+    virtual void setup(Window *win) = 0; // just add setup methode
 };
 
 } /* namespace ta */

@@ -32,33 +32,33 @@ namespace ta
 class Window: public sf::RenderWindow
 {
 public:
-	Window(Panel *panel = 0);
-	Window(sf::VideoMode mode, sf::String title, Panel *panel = 0);
-	
-	virtual ~Window();	
-	
-	Panel *currentPanel();
-	
-	void changePanel(Panel * panel);
-	bool deleteCurrentPanel();
-	
-	void addTexture(const sf::Texture *texture);
-	void removeTexture(sf::Texture *texture);
-	
-	void update();
-	
-	void run();
-	void stopRun();
-	
+    Window(Panel *panel = 0);
+    Window(sf::VideoMode mode, sf::String title, Panel *panel = 0);
+    
+    virtual ~Window();    
+    
+    Panel *currentPanel();
+    
+    void changePanel(Panel * panel);
+    bool deleteCurrentPanel();
+    
+    void addTexture(const sf::Texture *texture);
+    void removeTexture(sf::Texture *texture);
+    
+    void update();
+    
+    void run();
+    void stopRun();
+    
 private:
-	
-	bool m_stopRun;
-	
-	sf::View m_view;
-	
-	Panel *m_currentPanel;
-	
-	std::vector<sf::Texture> listTexture;
+    
+    bool m_stopRun;
+    
+    sf::View m_view;
+    
+    Panel *m_currentPanel;
+    
+    std::vector<sf::Texture> listTexture;
 };
 
 } /* namespace ta */

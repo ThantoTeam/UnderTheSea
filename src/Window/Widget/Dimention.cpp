@@ -12,22 +12,22 @@ namespace ta
 
 Dimention<int> dimention(int width, int height)
 {
-	Dimention<int> dim;
+    Dimention<int> dim;
 
-	dim.width = width;
-	dim.height = height;
+    dim.width = width;
+    dim.height = height;
 
-	return dim;
+    return dim;
 }
 
 Dimention<float> dimention(float width, float height)
 {
-	Dimention<float> dim;
+    Dimention<float> dim;
 
-	dim.width = width;
-	dim.height = height;
+    dim.width = width;
+    dim.height = height;
 
-	return dim;
+    return dim;
 }
 
 }  // namespace ta

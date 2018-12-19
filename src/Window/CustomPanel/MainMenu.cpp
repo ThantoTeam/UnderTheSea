@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-#include "../Texture.h"
+#include "../TextureLoader.h"
 #include "../Widget/ImageWidget.h"
 #include "../Window.h"
 
@@ -29,11 +29,9 @@ MainMenu::~MainMenu()
 
 void MainMenu::setup(Window *window)
 {
-	//background
-	sf::Texture texture = Texture::loadTextureFromFile(
-			"assets/image/MainMenu/background.jpg");
-	window->addTexture(&texture);
-	new ImageWidget(&texture, this);
+    //background
+//    window->addTexture(&texture);
+//    new ImageWidget(&texture, this);
 }
 
 } /* namespace ta */
