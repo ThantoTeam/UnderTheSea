@@ -37,7 +37,7 @@ Widget::Widget(Dimention<int> dim, Widget* parent) :
         m_parent = parent;
     }
 
-    m_position = sf::Vector2f(0, 0);
+    setDimention(dim);
 
 }
 
@@ -48,6 +48,8 @@ Widget::Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget *parent) :
     {
         parent->addChild(this);
     }
+
+    setDimention(dim);
     setPosition(pos);
 }
 

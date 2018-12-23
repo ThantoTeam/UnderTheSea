@@ -17,7 +17,7 @@ namespace ta
 {
 
 Window::Window(Panel *panel) :
-        RenderWindow(sf::VideoMode(250, 250), "An application")
+        RenderWindow(sf::VideoMode(250, 250), "An application"), m_textureLoader()
 {
     changePanel(panel);
 
@@ -25,7 +25,7 @@ Window::Window(Panel *panel) :
 }
 
 Window::Window(sf::VideoMode mode, sf::String title, Panel *panel) :
-        RenderWindow(mode, title)
+        RenderWindow(mode, title), m_textureLoader()
 {
     changePanel(panel);
 
@@ -35,6 +35,13 @@ Window::Window(sf::VideoMode mode, sf::String title, Panel *panel) :
 Window::~Window()
 {
     deleteCurrentPanel();
+}
+
+void Window::loadTexture()
+{
+    // load all texture need all time window is open
+    
+    
 }
 
 Panel * Window::currentPanel()

@@ -20,7 +20,14 @@ void error(std::string msg);
 
 }  // namespace log
 
+namespace general
+{
 std::string getCurrentStringTime();
+
+bool testFileExist(std::string filePath);
+}  // namespace general
+
+
 
 }  // namespace ta
 

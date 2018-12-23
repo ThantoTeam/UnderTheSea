@@ -10,6 +10,7 @@
 #include <bits/types/time_t.h>
 #include <ctime>
 #include <iostream>
+#include <fstream>
 
 #define LENGHT_REPONSE_TIME_STRING 9
 #define TIME_STRING_FORMAT "%T"
@@ -21,23 +22,26 @@ namespace log
 
 void log(std::string msg)
 {
-    std::cout << "log " << "[" << getCurrentStringTime() << "]: " << msg
-            << std::endl;
+    std::cout << "log " << "[" << general::getCurrentStringTime() << "]: "
+            << msg << std::endl;
 }
 
 void warm(std::string msg)
 {
-    std::cout << "WARM " << "[" << getCurrentStringTime() << "]: " << msg
-            << std::endl;
+    std::cout << "WARM " << "[" << general::getCurrentStringTime() << "]: "
+            << msg << std::endl;
 }
 
 void error(std::string msg)
 {
-    std::cerr << "ERROR " << "[" << getCurrentStringTime() << "]: " << msg
-            << std::endl;
+    std::cerr << "ERROR " << "[" << general::getCurrentStringTime() << "]: "
+            << msg << std::endl;
 }
 
 }  // namespace log
+
+namespace general
+{
 
 std::string getCurrentStringTime()
 {
@@ -54,5 +58,14 @@ std::string getCurrentStringTime()
     return std::string(reponse);
 }
 
+bool testFileExist(std::string filePath)
+{
+    std::ifstream file(filePath.c_str());
+    
+    if (file) return true;
+    return false;
+}
+
+}  // namespace general
 }  // namespace ta
 

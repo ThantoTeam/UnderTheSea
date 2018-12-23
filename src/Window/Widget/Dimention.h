@@ -18,6 +18,7 @@ struct Dimention
     int height;
 };
 
+/*  */
 Dimention<int> dimention(int x, int y);
 Dimention<float> dimention(float x, float y);
 

@@ -9,10 +9,10 @@
 #define SRC_WIDGET_WINDOW_H_
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/String.hpp>
-#include <vector>
+
+#include "TextureLoader.h"
 
 namespace ta
 { 
@@ -35,7 +35,7 @@ public:
     Window(Panel *panel = 0);
     Window(sf::VideoMode mode, sf::String title, Panel *panel = 0);
     
-    virtual ~Window();    
+    virtual ~Window();
     
     Panel *currentPanel();
     
@@ -47,6 +47,10 @@ public:
     void run();
     void stopRun();
     
+    void loadTexture();
+    
+    TextureLoader* textureLoader();
+    
 private:
     
     bool m_stopRun;
@@ -54,6 +58,8 @@ private:
     sf::View m_view;
     
     Panel *m_currentPanel;
+
+    TextureLoader m_textureLoader;
 };
 
 } /* namespace ta */

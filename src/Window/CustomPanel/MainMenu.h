@@ -24,6 +24,7 @@ public:
     MainMenu();
     virtual ~MainMenu();
 
+    /* setup the MainMenu */
     virtual void setup(Window *window) override;
 };
 

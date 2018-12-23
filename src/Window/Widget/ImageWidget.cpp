@@ -8,35 +8,36 @@
 #include "ImageWidget.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <iostream>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 namespace ta
 {
 
 ImageWidget::ImageWidget(Widget *parent) :
-        Widget(parent), m_texture(0), m_autoResize(false)
+        Widget(parent)
 {
     createSprite();
 }
 
-ImageWidget::ImageWidget(sf::Texture *texture, Widget *parent) :
-        Widget(parent), m_texture(texture), m_autoResize(false)
+ImageWidget::ImageWidget(sf::Texture* texture, Widget *parent) :
+        Widget(parent)
 {
     createSprite();
+
+    setTexture(texture);
 }
 
 ImageWidget::~ImageWidget()
 {
     this->~Widget();
-    
+   
     delete m_sprite;
 }
 
 void ImageWidget::createSprite()
 {
     m_sprite = new sf::Sprite();
-
-    m_sprite->setTexture(*m_texture);
 }
 
 void ImageWidget::draw(sf::RenderWindow *win)
@@ -44,29 +45,20 @@ void ImageWidget::draw(sf::RenderWindow *win)
     win->draw(*m_sprite);
 }
 
-void ImageWidget::setTexture(sf::Texture *texture)
+void ImageWidget::setDimention(Dimention<int> dim)
 {
-    m_texture = texture;
+    m_sprite->setScale(dim.width / m_sprite->getLocalBounds().width,
+            dim.height / m_sprite->getLocalBounds().height);
 }
 
-void ImageWidget::setAutoResize(const bool &autoResize)
+void ImageWidget::setTexture(sf::Texture* texture)
 {
-    m_autoResize = autoResize;
-}
-
-sf::Texture *ImageWidget::texture() const
-{
-    return m_texture;
+    m_sprite->setTexture(*texture);
 }
 
 sf::Sprite *ImageWidget::sprite() const
 {
     return m_sprite;
-}
-
-bool ImageWidget::autoResize()
-{
-    return m_autoResize;
 }
 
 } /* namespace ta */
