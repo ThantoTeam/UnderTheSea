@@ -98,18 +98,11 @@ void Widget::draw(sf::RenderWindow *win)
 {
 }
 
-void Widget::onClick(const sf::Event::MouseButtonEvent &event)
+void Widget::onEvent(const sf::Event &event)
 {
-    if (event.x >= m_position.x && event.x <= m_position.x + m_dimention.width
-            && event.y >= m_position.y
-            && event.y <= m_position.y + m_dimention.height)
+    for (Widget* currentWidget : m_listChild)
     {
-        
-        for (Widget* currentWidget : m_listChild)
-        {
-            currentWidget->onClick(event);
-        }
-        
+        currentWidget->onEvent(event);
     }
 }
 

@@ -37,8 +37,12 @@ void MainMenu::setup(Window *window)
             "image/MainMenu/background.jpg", sf::IntRect(),
             "MainMenuBackground");
 
-    new ImageWidget(
-            window->textureLoader()->getTexture("MainMenuBackground"), this);
+    ImageWidget *img = new ImageWidget(
+            window->textureLoader()->getTexture("MainMenuBackground"),
+            this);
+    
+    img->Widget::setDimention(700, 500);
+    
 }
 
 } /* namespace ta */

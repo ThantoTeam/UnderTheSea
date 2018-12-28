@@ -32,8 +32,8 @@ public:
     
     virtual void draw(sf::RenderWindow *win);
 
-    virtual void onClick(const sf::Event::MouseButtonEvent& event);
-
+    virtual void onEvent(const sf::Event &evt);
+    
     void drawAllChild(sf::RenderWindow *win);
     
     virtual bool setPosition(float x, float y);

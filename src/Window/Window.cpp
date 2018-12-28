@@ -105,17 +105,34 @@ void Window::run()
         sf::Event event;
         while (pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-            {
-                ta::log::log("Close Window");
-                close();
-            }
+            testEvent(event);
         }
 
         update();
     }
     
     ta::log::log("Window stop updates");
+}
+
+void Window::testEvent(sf::Event event)
+{
+    switch (event.type)
+    {
+    case sf::Event::Closed:
+        stopRun();
+        break;
+        
+    case sf::Event::KeyPressed:
+        if (event.key.code == sf::Keyboard::Escape) stopRun();
+        break;
+    
+    default:
+        return;
+    }
+    
+    // send event to all widgets
+    
+    if (m_currentPanel != 0) m_currentPanel->onEvent(event);
 }
 
 void Window::stopRun()

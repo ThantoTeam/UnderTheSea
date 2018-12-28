@@ -55,6 +55,8 @@ public:
     
 private:
     
+    void testEvent(sf::Event);
+    
     bool m_stopRun;
     
 
