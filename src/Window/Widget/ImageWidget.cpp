@@ -30,8 +30,8 @@ ImageWidget::ImageWidget(sf::Texture* texture, Widget *parent) :
 
 ImageWidget::~ImageWidget()
 {
-    this->~Widget();
-   
+    m_sprite->setTexture(sf::Texture(), true);
+
     delete m_sprite;
 }
 

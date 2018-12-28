@@ -7,7 +7,7 @@
 
 #include "MainMenu.h"
 
-#include <iostream>
+#include <SFML/Graphics/Rect.hpp>
 
 #include "../TextureLoader.h"
 #include "../Widget/ImageWidget.h"
@@ -24,16 +24,21 @@ MainMenu::MainMenu()
 
 MainMenu::~MainMenu()
 {
-    this->~Widget();
+    // deload texture
 }  
 
 
 
 void MainMenu::setup(Window *window)
 {
+    // load texture
     //background
-//    window->addTexture(&texture);
-//    new ImageWidget(&texture, this);
+    window->textureLoader()->loadTextureFromFile(
+            "image/MainMenu/background.jpg", sf::IntRect(),
+            "MainMenuBackground");
+
+    new ImageWidget(
+            window->textureLoader()->getTexture("MainMenuBackground"), this);
 }
 
 } /* namespace ta */

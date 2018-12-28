@@ -9,10 +9,6 @@
 
 int main()
 {
-    std::cout << ta::general::testFileExist("null") << std::endl;
-    std::cout << ta::general::testFileExist(DEFAULT_TEXTURE) << std::endl;
-
-    return 0;
     ta::Window *win = new ta::Window(sf::VideoMode(200, 200), "Test");
     
     ta::MainMenu *mainMenu = new ta::MainMenu();
@@ -20,6 +16,7 @@ int main()
     
     win->run();
     
+
     delete win;
     return EXIT_SUCCESS;
 }

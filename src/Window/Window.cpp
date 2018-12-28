@@ -17,23 +17,28 @@ namespace ta
 {
 
 Window::Window(Panel *panel) :
-        RenderWindow(sf::VideoMode(250, 250), "An application"), m_textureLoader()
+        RenderWindow(sf::VideoMode(250, 250), "An application"), m_textureLoader(
+                new TextureLoader)
 {
     changePanel(panel);
 
-    m_view = getDefaultView();
+    m_view = getView();
+    setFramerateLimit(FRAMERATE_LIMIT);
 }
 
 Window::Window(sf::VideoMode mode, sf::String title, Panel *panel) :
-        RenderWindow(mode, title), m_textureLoader()
+        RenderWindow(mode, title), m_textureLoader(new TextureLoader())
 {
     changePanel(panel);
 
-    m_view = getDefaultView(); // to correct resize
+    m_view = getView(); // to correct resize
+    setFramerateLimit(FRAMERATE_LIMIT);
 }
 
 Window::~Window()
 {
+    delete m_textureLoader;
+    
     deleteCurrentPanel();
 }
 
@@ -66,7 +71,6 @@ bool Window::deleteCurrentPanel()
     { 
         delete m_currentPanel;
         m_currentPanel = 0;
-
         return true;
     }
 
@@ -117,6 +121,11 @@ void Window::run()
 void Window::stopRun()
 {
     m_stopRun = true;
+}
+
+TextureLoader* Window::textureLoader()
+{
+    return m_textureLoader;
 }
 
 } /* namespace ta */

@@ -7,7 +7,10 @@
 
 #include "Widget.h"
 
+#include <stddef.h>
 #include <iterator>
+
+#include "../../General.h"
 
 
 namespace ta {
@@ -70,7 +73,7 @@ void Widget::removeChild(Widget *child)
 {
 
     for (std::vector<Widget*>::iterator it = m_listChild.begin();
-            it != m_listChild.end(); it++)
+            it != m_listChild.end(); ++it)
     {
 
         if (child == *it)
@@ -78,7 +81,7 @@ void Widget::removeChild(Widget *child)
             m_listChild.erase(it);
             return;
         }
-        
+
     }
     
 }

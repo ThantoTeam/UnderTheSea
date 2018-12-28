@@ -14,6 +14,8 @@
 
 #include "TextureLoader.h"
 
+#define FRAMERATE_LIMIT 60
+
 namespace ta
 { 
 class Panel;
@@ -55,11 +57,12 @@ private:
     
     bool m_stopRun;
     
+
     sf::View m_view;
     
     Panel *m_currentPanel;
 
-    TextureLoader m_textureLoader;
+    TextureLoader *m_textureLoader;
 };
 
 } /* namespace ta */
