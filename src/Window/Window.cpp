@@ -8,10 +8,13 @@
 #include "Window.h"
 
 #include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/VideoMode.hpp>
+#include <iostream>
 
 #include "../General.h"
 #include "Panel.h"
+#include "Widget/Dimention.h"
 
 namespace ta
 {
@@ -62,6 +65,10 @@ void Window::changePanel(Panel* panel)
         m_currentPanel = panel;
 
         m_currentPanel->setup(this);
+
+        m_currentPanel->setDimention(
+                dimention(int(getDefaultView().getSize().x),
+                        int(getDefaultView().getSize().y)));
     }
 }
 
