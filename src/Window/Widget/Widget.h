@@ -25,9 +25,10 @@ namespace ta
 class Widget
 {
 public:
-    Widget(Widget *parent = 0);
-    Widget(Dimention<int> dim, Widget *parent = 0);
-    Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget* parent = 0);
+    Widget(Widget *parent = 0, bool isDisable = false);
+    Widget(Dimention<int> dim, Widget *parent = 0, bool isDisable = false);
+    Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget* parent = 0,
+            bool isDisable = false);
     virtual ~Widget();
     
     virtual void draw(sf::RenderWindow *win);
@@ -48,6 +49,9 @@ public:
 
     void deleteWidget();
 
+    void setDisable(bool disable);
+    bool isDisable() const;
+
 protected:
     
     void addChild(Widget*child);
@@ -59,8 +63,10 @@ protected:
     
     sf::Vector2<float> m_position;    
     Dimention<int> m_dimention;
+    
+    bool m_disable;
 };
 
-} /* namespace Thanto */
+} /* namespace ta */
 
 #endif /* WIDGET_H_ */

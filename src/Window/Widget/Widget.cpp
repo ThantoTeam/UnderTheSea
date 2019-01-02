@@ -15,7 +15,8 @@
 
 namespace ta {
 
-Widget::Widget(Widget* parent)
+Widget::Widget(Widget* parent, bool isDisable) :
+        m_disable(isDisable)
 {
     if (parent != NULL && parent != 0)
     {
@@ -30,8 +31,8 @@ Widget::Widget(Widget* parent)
     m_position = sf::Vector2f(0, 0);
 }
 
-Widget::Widget(Dimention<int> dim, Widget* parent) :
-        m_dimention(dim)
+Widget::Widget(Dimention<int> dim, Widget* parent, bool isDisable) :
+        m_dimention(dim), m_disable(isDisable)
 {
     if (parent != NULL && parent != 0)
     {
@@ -44,8 +45,9 @@ Widget::Widget(Dimention<int> dim, Widget* parent) :
 
 }
 
-Widget::Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget *parent) :
-        m_parent(parent)
+Widget::Widget(sf::Vector2<float> pos, Dimention<int> dim, Widget *parent,
+        bool isDisable) :
+        m_parent(parent), m_disable(isDisable)
 {
     if (parent != 0)
     {
@@ -176,6 +178,13 @@ void Widget::setDimention(int width, int height)
 
 void Widget::setDimention(Dimention<int> dim)
 {
+    if (dim.height == 0 && dim.width == 0)
+    {
+        if (m_parent != 0)
+        {
+            dim = m_parent->dimention();
+        }
+    }
     m_dimention = dim;
 }
 
@@ -187,6 +196,21 @@ sf::Vector2<float> Widget::position() const
 Dimention<int> Widget::dimention() const
 {
     return m_dimention;
+}
+
+void Widget::setDisable(bool disable)
+{
+    m_disable = disable;
+
+    for (Widget* currentWidget : m_listChild)
+    {
+        currentWidget->setDisable(disable);
+    }
+}
+
+bool Widget::isDisable() const
+{
+    return m_disable;
 }
 
 } /* namespace Thanto */
